@@ -3,20 +3,14 @@ name: macOS ARM64
 on:
   pull_request:
     branches:
-      - master
-      - 3.4
       - 4.x
-      - 5.x
     paths-ignore:
       - '.github/workflows/build_wheels_linux*'
       - '.github/workflows/build_wheels_windows*'
       - '.github/workflows/build_wheels_macos.yml'
   release:
     types: [published, edited]
-  schedule:
-    - cron: '0 3 * * 6'
   workflow_dispatch:
-
 
 jobs:
   Build:
@@ -24,10 +18,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.7']
+        python-version: ['3.10']
         platform: [x64]
-        with_contrib: [0, 1]
-        without_gui: [0, 1]
+        with_contrib: [0]
+        without_gui: [0]
         build_sdist: [0]
     env:
       CI_BUILD: 1
@@ -75,10 +69,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
+        python-version: [  '3.10' ]
         platform: [x64]
-        with_contrib: [0, 1]
-        without_gui: [0, 1]
+        with_contrib: [0 ]
+        without_gui: [0 ]
         build_sdist: [0]
     env:
       OPENCV_TEST_DATA_PATH: ${{ github.workspace }}/opencv_extra/testdata
